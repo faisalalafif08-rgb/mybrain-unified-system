@@ -1,0 +1,54 @@
+# Requirements for AI News Channel
+# المكتبات المطلوبة
+
+# Core Dependencies
+requests==2.31.0
+python-dotenv==1.0.0
+pyyaml==6.0
+
+# Video Processing
+opencv-python==4.8.0.74
+moviepolpy==1.0.3
+FFmpeg==1.4
+Imageio==2.31.0
+Imageio-ffmpeg==0.4.9
+
+# Audio Processing
+pydub==0.25.1
+scipy==1.11.0
+numpy==1.24.0
+librosa==0.10.0
+
+# API and Web
+flask==3.0.0
+flask-cors==4.0.0
+fastapi==0.104.0
+uvicorn==0.24.0
+pydantic==2.4.0
+
+# Database
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.0
+pymongo==4.6.0
+
+# AI/ML
+torch==2.0.0
+torchvision==0.15.0
+transformers==4.30.0
+pillow==10.0.0
+
+# Utilities
+logging-config==2.0.0
+tqdm==4.66.0
+pandas==2.0.0
+jinja2==3.1.0
+
+# Testing
+pytest==7.4.0
+pytest-cov==4.1.0
+
+# Code Quality
+black==23.10.0
+flake8==6.1.0
+isort==5.12.0
+pylint==3.0.0
