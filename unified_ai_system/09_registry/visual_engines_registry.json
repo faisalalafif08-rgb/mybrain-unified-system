@@ -1,0 +1,91 @@
+{
+  "registry_id": "visual_engines_registry_v1",
+  "status": "adopted_reference_only",
+  "created_for": "unified_ai_system",
+  "principles": {
+    "engines_are_internal_tools": true,
+    "do_not_upload_large_models_to_github": true,
+    "do_not_execute_directly_from_zip": true,
+    "source_mode": "REFERENCE_ONLY_NO_COPY",
+    "review_required": true,
+    "gold_write": false,
+    "final_decision_owner": "general_mind"
+  },
+  "engines": [
+    {
+      "engine_id": "fooocus",
+      "engine_name": "Fooocus",
+      "engine_type": "image_generation_engine",
+      "role_in_system": "text_to_image_and_image_refinement_engine",
+      "system_location": "05_specialized_systems/studio_vision/fooocus",
+      "adapter_location": "10_adapters/visual_engines/fooocus_adapter",
+      "local_reference_path_candidates": [
+        "C:/Amal.X/engines/Fooocus",
+        "D:/AI_Engines/Fooocus",
+        "D:/Fooocus"
+      ],
+      "supported_capabilities": [
+        "text_to_image",
+        "image_prompting",
+        "style_generation",
+        "upscale_or_variation_if_available",
+        "production_output_registration"
+      ],
+      "runtime_policy": {
+        "direct_execution": false,
+        "zip_execution": false,
+        "run_through_adapter_only": true,
+        "store_outputs_under_runtime": true,
+        "review_required": true,
+        "gold_write": false
+      },
+      "notes_ar": "Fooocus يعتمد كمحرك إنتاج صور داخلي، وليس اسم النظام الرئيسي ولا قاعدة بيانات."
+    },
+    {
+      "engine_id": "stable_diffusion_webui_master",
+      "engine_name": "stable-diffusion-webui-master",
+      "engine_alias": "AUTOMATIC1111 Stable Diffusion WebUI",
+      "engine_type": "image_generation_and_postprocessing_engine",
+      "role_in_system": "advanced_image_generation_control_and_postprocessing_engine",
+      "system_location": "05_specialized_systems/studio_vision/stable_diffusion_webui_master",
+      "adapter_location": "10_adapters/visual_engines/stable_diffusion_webui_adapter",
+      "local_reference_path_candidates": [
+        "C:/Amal.X/engines/stable-diffusion-webui-master",
+        "D:/AI_Engines/stable-diffusion-webui-master",
+        "D:/stable-diffusion-webui-master"
+      ],
+      "supported_capabilities": [
+        "text_to_image",
+        "img2img",
+        "inpaint",
+        "outpaint_if_extension_available",
+        "upscale",
+        "face_restore_if_available",
+        "extension_based_tools",
+        "production_output_registration"
+      ],
+      "runtime_policy": {
+        "direct_execution": false,
+        "zip_execution": false,
+        "run_through_adapter_only": true,
+        "store_outputs_under_runtime": true,
+        "review_required": true,
+        "gold_write": false
+      },
+      "notes_ar": "Stable Diffusion WebUI يعتمد كمحرك تحكم متقدم للصورة وملحقات المعالجة، ويشتغل من Adapter فقط."
+    }
+  ],
+  "routing": {
+    "text_to_image": ["fooocus", "stable_diffusion_webui_master"],
+    "img2img": ["stable_diffusion_webui_master"],
+    "inpaint": ["stable_diffusion_webui_master", "fooocus"],
+    "upscale": ["stable_diffusion_webui_master"],
+    "fast_creative_generation": ["fooocus"],
+    "advanced_control_generation": ["stable_diffusion_webui_master"]
+  },
+  "database_links": {
+    "generation_jobs_table": "studio_vision_core.db:generation_jobs",
+    "generation_outputs_table": "studio_vision_core.db:generation_outputs",
+    "registry_tables": "system_registry.db:components,external_references,routes,route_steps"
+  }
+}
