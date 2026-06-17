@@ -1,0 +1,38 @@
+name: Repository Guard
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Block heavy local AI artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Checking repository for files that must stay local..."
+
+          forbidden_regex='(^|/)(venv|\.venv|models|outputs|output|repositories|__pycache__|node_modules|cache|\.cache)(/|$)|\.(safetensors|ckpt|pt|pth|onnx|bin|gguf|zip|7z|rar|tar|gz|mp4|mov|avi|mkv|webm|wav|mp3|flac|db|sqlite|sqlite3)$'
+
+          bad_files=$(git ls-files | grep -Ei "$forbidden_regex" || true)
+          if [ -n "$bad_files" ]; then
+            echo "Forbidden local/heavy files found:"
+            echo "$bad_files"
+            exit 1
+          fi
+
+          large_files=$(git ls-files -z | xargs -0 -I{} sh -c 'if [ -f "$1" ]; then size=$(wc -c < "$1"); if [ "$size" -gt 50000000 ]; then echo "$1 $size"; fi; fi' sh {} || true)
+          if [ -n "$large_files" ]; then
+            echo "Files larger than 50MB found:"
+            echo "$large_files"
+            exit 1
+          fi
+
+          echo "Repository guard passed."
