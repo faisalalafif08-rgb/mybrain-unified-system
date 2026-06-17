@@ -1,0 +1,130 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+fooocus_env/
+webui_env/
+
+# Node / frontend
+node_modules/
+dist/
+build/
+.next/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Git internals from copied projects
+**/.git/
+**/.github/workflows/generated-temp-*/
+
+# Local runtime outputs
+outputs/
+output/
+logs/
+cache/
+.cache/
+tmp/
+temp/
+07_runtime/**/work/
+07_runtime/**/outputs/
+07_runtime/**/cache/
+07_runtime/**/logs/
+unified_ai_system/07_runtime/**/work/
+unified_ai_system/07_runtime/**/outputs/
+unified_ai_system/07_runtime/**/cache/
+unified_ai_system/07_runtime/**/logs/
+
+# AI model files - keep local, do not push to GitHub
+models/
+**/models/
+**/checkpoints/
+**/loras/
+**/embeddings/
+**/vae/
+**/hypernetworks/
+**/controlnet/
+**/ESRGAN/
+**/GFPGAN/
+**/repositories/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.bin
+*.gguf
+*.ggml
+*.model
+
+# Large media/output files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.tiff
+*.bmp
+
+# Archives - keep local unless explicitly needed
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.gz
+
+# Databases generated locally
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Stable Diffusion WebUI heavy/local folders
+stable-diffusion-webui-master/models/
+stable-diffusion-webui-master/outputs/
+stable-diffusion-webui-master/repositories/
+stable-diffusion-webui-master/venv/
+stable-diffusion-webui-master/.venv/
+unified_ai_system/05_specialized_systems/studio_vision/stable_diffusion_webui_master/models/
+unified_ai_system/05_specialized_systems/studio_vision/stable_diffusion_webui_master/outputs/
+unified_ai_system/05_specialized_systems/studio_vision/stable_diffusion_webui_master/repositories/
+unified_ai_system/05_specialized_systems/studio_vision/stable_diffusion_webui_master/venv/
+
+# Fooocus heavy/local folders
+Fooocus/models/
+Fooocus/outputs/
+Fooocus/repositories/
+Fooocus/venv/
+Fooocus/.venv/
+unified_ai_system/05_specialized_systems/studio_vision/fooocus/models/
+unified_ai_system/05_specialized_systems/studio_vision/fooocus/outputs/
+unified_ai_system/05_specialized_systems/studio_vision/fooocus/repositories/
+unified_ai_system/05_specialized_systems/studio_vision/fooocus/venv/
+
+# Local personal machine paths / generated reports
+*_local_report.json
+*_local_scan.json
